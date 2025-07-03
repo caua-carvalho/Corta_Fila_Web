@@ -1,11 +1,16 @@
-import './LoginForm.css'; // Certifique-se de que o caminho está correto
+import React, { useContext } from 'react';
+import './LoginForm.css';
+import { AuthContext } from '../../contexts/AuthContext';
 
-function App() {
+function Home() {
+  const { signOut } = useContext(AuthContext);
+
   return (
     <div className="login-container">
       <h1>AGENDA</h1>
+      <button onClick={signOut} className="btn primary">Sair</button>
     </div>
   );
 }
 
-export default App;
+export default Home;

@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Configuration
+
+The backend API URL can be configured via the environment variable `REACT_APP_API_BASE_URL`.
+Create a `.env` file based on `.env.example` and adjust the URL if necessary.
+
 ## Available Scripts
 
 In the project directory, you can run:
