@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Rota pública de login */}
-        <Route path="./public/screens/LoginForm.jsx" element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm />} />
 
         {/* Rotas privadas
         <Route

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',                    // ajuste para sua URL de API
+  baseURL: 'http://localhost:8080/Corta_Fila/back-end/public',
 });
 
 // Define ou remove o header Authorization e atualiza localStorage
@@ -34,3 +34,9 @@ export function initAuth() {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 }
+
+export async function validate() {
+  const { data } = await api.get('/validate.php');
+  return data;               // authorized, user: { ... }
+}
+

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaGoogle, FaFacebook } from 'react-icons/fa';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import '../../App.js';
 import icone from '../../assets/icons/google.png';
 
@@ -23,13 +23,18 @@ function FloatingInput({ id, label, type, value, onChange, minLength }) {
 }
 
 function App() {
-  const [email, setEmail]       = useState('');
+  const [phone, setPhone]       = useState('');
   const [password, setPassword] = useState('');
+  const { signIn } = useContext(AuthContext);
 
-  const handleLogin = e => {
+  const handleLogin = async e => {
     e.preventDefault();
-    console.log('Login com', email, password);
-    // ex.: localStorage.setItem('token', tokenRecebido);
+    try {
+      await signIn(phone, password); // the login() function in auth.js will run
+      // Optionally redirect to a protected route
+    } catch (err) {
+      console.error('Erro ao autenticar', err);
+    }
   };
 
   return (
@@ -38,11 +43,11 @@ function App() {
 
       <form className="login-form" onSubmit={handleLogin}>
         <FloatingInput
-          id="email"
-          label="E-mail"
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          id="phone"
+          label="Telefone"
+          type="phone"
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
         />
 
         <FloatingInput
