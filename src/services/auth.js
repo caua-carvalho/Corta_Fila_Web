@@ -35,6 +35,10 @@ export function initAuth() {
   }
 }
 
+export function isAuthenticated() {
+  return !!localStorage.getItem('token');
+}
+
 export async function validate() {
   const { data } = await api.get('/validate.php');
   return data;               // authorized, user: { ... }
