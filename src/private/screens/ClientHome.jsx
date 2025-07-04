@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import '../../public/screens/LoginForm.css';
+import '../../public/screens/login/LoginForm.css';
 
 function ClientHome() {
   const { signOut, user } = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/Corta_Fila/back-end/public',
+  baseURL: 'http://localhost:8080/Corta_Fila_Back/public',
 });
 
 // Define ou remove o header Authorization e atualiza localStorage

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
-import icone from '../../assets/icons/google.png';
+import { AuthContext } from '../../../contexts/AuthContext';
+import icone from '../../../assets/icons/google.png';
 import './LoginForm.css';
 
 function FloatingInput({ id, label, type, value, onChange, minLength }) {

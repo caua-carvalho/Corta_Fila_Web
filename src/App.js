@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginForm from './public/screens/LoginForm.jsx';
+import LoginForm from './public/screens/login/LoginForm.jsx';
 import HomeRedirect from './components/HomeRedirect.jsx';
 import BarberHome from './private/screens/BarberHome.jsx';
 import ClientHome from './private/screens/ClientHome.jsx';
