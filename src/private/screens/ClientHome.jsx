@@ -1,16 +1,15 @@
 import React, { useContext } from 'react';
-import './LoginForm.css';
 import { AuthContext } from '../../contexts/AuthContext';
+import '../../public/screens/LoginForm.css';
 
-function Home() {
-  const { signOut } = useContext(AuthContext);
-
+function ClientHome() {
+  const { signOut, user } = useContext(AuthContext);
   return (
     <div className="login-container">
-      <h1>AGENDA</h1>
+      <h1>Bem-vindo Cliente {user?.name}</h1>
       <button onClick={signOut} className="btn primary">Sair</button>
     </div>
   );
 }
 
-export default Home;
+export default ClientHome;
