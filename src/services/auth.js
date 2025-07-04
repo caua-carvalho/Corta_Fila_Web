@@ -4,43 +4,57 @@ const api = axios.create({
   baseURL: 'http://localhost:8080/Corta_Fila_Back/public',
 });
 
-// Define ou remove o header Authorization e atualiza localStorage
-export function setAuthToken(token) {
-  if (token) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    localStorage.setItem('token', token);
-  } else {
-    delete api.defaults.headers.common['Authorization'];
-    localStorage.removeItem('token');
-  }
-}
+// Módulo auth encapsulado
+const auth = {
+  // --- Token management ---
+  setToken(token) {
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      localStorage.setItem('token', token);
+    } else {
+      delete api.defaults.headers.common['Authorization'];
+      localStorage.removeItem('token');
+    }
+  },
 
-// Chama o endpoint de login, seta token e retorna dados
-export async function login(phone, password) {
-  const { data } = await api.post('/login.php', { phone, password });
-  setAuthToken(data.token);
-  return data;
-}
+  init() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+  },
 
-// Remove token e header
-export function logout() {
-  setAuthToken(null);
-}
+  isAuthenticated() {
+    return !!localStorage.getItem('token');
+  },
 
-// Na inicialização da app, lê localStorage e seta header
-export function initAuth() {
-  const token = localStorage.getItem('token');
-  if (token) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  }
-}
+  // --- Login namespace ---
+  login: {
+    async execute(phone, password) {
+      const { data } = await api.post('/login.php', { phone, password });
+      auth.setToken(data.token);
+      return data;
+    },
 
-export function isAuthenticated() {
-  return !!localStorage.getItem('token');
-}
+    async validate() {
+      const { data } = await api.get('/validate.php');
+      return data; // { authorized, user: { ... } }
+    },
+  },
 
-export async function validate() {
-  const { data } = await api.get('/validate.php');
-  return data;               // authorized, user: { ... }
-}
+  // --- Register namespace ---
+  register: {
+    async execute({ name, phone, email, password }) {
+      const payload = { name, phone, email, password };
+      const { data } = await api.post('/register.php', payload);
+      return data;
+    },
+  },
 
+  // --- Logout direto no root ---
+  logout() {
+    auth.setToken(null);
+  },
+};
+
+export default auth;

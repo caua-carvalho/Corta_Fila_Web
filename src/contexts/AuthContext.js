@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { login, logout, validate } from '../services/auth';
+import auth from '../services/auth';
 
 export const AuthContext = createContext();
 
@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const { authorized, user } = await validate();
+        const { authorized, user } = await auth.login.validate();
         if (authorized) setUser(user);
       } catch (err) {
         setUser(null);
@@ -24,8 +24,8 @@ export function AuthProvider({ children }) {
 
   // Função de login chamada pelos formulários
   const signIn = async (phone, pass) => {
-    await login(phone, pass);
-    const { authorized, user } = await validate();
+    await auth.login.execute(phone, pass);
+    const { authorized, user } = await auth.login.validate();
     if (!authorized) {
       throw new Error('Invalid credentials');
     }
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
 
   // Função de logout
   const signOut = async () => {
-    await logout();
+    await auth.logout();
     setUser(null);
   };
 
