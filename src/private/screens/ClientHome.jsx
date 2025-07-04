@@ -1,0 +1,15 @@
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import '../../public/screens/LoginForm.css';
+
+function ClientHome() {
+  const { signOut, user } = useContext(AuthContext);
+  return (
+    <div className="login-container">
+      <h1>Bem-vindo Cliente {user?.name}</h1>
+      <button onClick={signOut} className="btn primary">Sair</button>
+    </div>
+  );
+}
+
+export default ClientHome;

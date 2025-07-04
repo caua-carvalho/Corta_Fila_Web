@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginForm from './public/screens/LoginForm.jsx';
-import Home from './public/screens/home.jsx';
+import HomeRedirect from './components/HomeRedirect.jsx';
+import BarberHome from './private/screens/BarberHome.jsx';
+import ClientHome from './private/screens/ClientHome.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
 
 function App() {
@@ -14,7 +16,23 @@ function App() {
           path="/home"
           element={
             <PrivateRoute>
-              <Home />
+              <HomeRedirect />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/barber"
+          element={
+            <PrivateRoute>
+              <BarberHome />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/client"
+          element={
+            <PrivateRoute>
+              <ClientHome />
             </PrivateRoute>
           }
         />
