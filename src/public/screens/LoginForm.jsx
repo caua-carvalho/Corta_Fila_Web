@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate }           from 'react-router-dom';
-import { AuthContext }          from '../../contexts/AuthContext';
-import icone                    from '../../assets/icons/google.png';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import icone from '../../assets/icons/google.png';
 import './LoginForm.css';
-import { isAuthenticated }      from '../../services/auth';
 
 function FloatingInput({ id, label, type, value, onChange, minLength }) {
   return (
@@ -23,25 +22,28 @@ function FloatingInput({ id, label, type, value, onChange, minLength }) {
 }
 
 function LoginForm() {
-  const [phone, setPhone]       = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn }              = useContext(AuthContext);
-  const navigate                = useNavigate();
+  const [error, setError] = useState(null);
+  const { signIn, user, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // —— Verifica token assim que o componente “monta” ——
+  // Redireciona se já estiver autenticado
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (!loading && user) {
       navigate('/home', { replace: true });
     }
-  }, [navigate]);
+  }, [user, loading, navigate]);
 
   const handleLogin = async e => {
     e.preventDefault();
     try {
+      setError(null);
       await signIn(phone, password);
       navigate('/home', { replace: true });
     } catch (err) {
       console.error('Erro ao autenticar', err);
+      setError('Credenciais inválidas');
     }
   };
 
@@ -63,6 +65,7 @@ function LoginForm() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
+        {error && <p className="error-message">{error}</p>}
         <a href="#" className="forgot-link">Esqueci minha senha</a>
         <button type="submit" className="btn primary">Entrar</button>
         <a href="#" className="register-link">Quero me cadastrar</a>
