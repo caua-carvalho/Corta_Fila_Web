@@ -66,20 +66,12 @@ function LoginForm() {
           onChange={e => setPassword(e.target.value)}
         />
         {error && <p className="error-message">{error}</p>}
+
         <a href="#" className="forgot-link">Esqueci minha senha</a>
+
         <button type="submit" className="btn primary">Entrar</button>
-        <a href="#" className="register-link">Quero me cadastrar</a>
-        <button type="button" className="btn social google">
-          <img
-            src={icone}
-            alt="Google Icon"
-            style={{ width: 18, height: 18, marginRight: 8 }}
-          />
-          Entrar com Google
-        </button>
-        <a href="#" className="professional-link">
-          Fazer login como <strong>Professional</strong>
-        </a>
+
+        <a href="/register" className="register-link">Quero me cadastrar</a>
       </form>
     </div>
   );
