@@ -48,8 +48,9 @@ function RegisterForm() {
 
   return (
     <div className="register-container">
-      <h1>CRIE SUA CONTA</h1>
       <form className="register-form" onSubmit={handleRegister}>
+        <h1>CRIE SUA CONTA</h1>
+        
         <FloatingInput
           id="name"
           label="Nome"
