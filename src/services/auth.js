@@ -55,6 +55,7 @@ const auth = {
   logout() {
     auth.setToken(null);
   },
+  
 };
 
 export default auth;

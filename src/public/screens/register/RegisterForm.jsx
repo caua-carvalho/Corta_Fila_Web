@@ -71,7 +71,7 @@ function RegisterForm() {
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          minLength={6}
+          minLength={1}
         />
         <FloatingInput
           id="confirmPwd"
@@ -79,7 +79,7 @@ function RegisterForm() {
           type="password"
           value={confirmPwd}
           onChange={e => setConfirmPwd(e.target.value)}
-          minLength={6}
+          minLength={1}
         />
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="btn primary">Registrar</button>
