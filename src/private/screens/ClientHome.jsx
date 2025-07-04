@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import auth from '../../contexts/AuthContext';
 import '../../public/screens/login/LoginForm.css';
 
 function ClientHome() {
-  const { signOut, user } = useContext(AuthContext);
+  const { signOut, user } = useContext(auth.Context);
   return (
     <div className="login-container">
       <h1>Bem-vindo Cliente {user?.name}</h1>

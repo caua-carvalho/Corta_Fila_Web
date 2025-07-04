@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthContext';
+import auth from '../../../contexts/AuthContext';
 import icone from '../../../assets/icons/google.png';
 import './LoginForm.css';
 
@@ -25,7 +25,7 @@ function LoginForm() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const { signIn, user, loading } = useContext(AuthContext);
+  const { signIn, user, loading } = useContext(auth.Context);
   const navigate = useNavigate();
 
   // Redireciona se já estiver autenticado

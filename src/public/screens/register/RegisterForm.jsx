@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthContext';
+import auth from '../../../contexts/AuthContext';
 import './RegisterForm.css'; // Importa o CSS do LoginForm
 
 function FloatingInput({ id, label, type, value, onChange, minLength }) {
@@ -26,7 +26,7 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const [error, setError] = useState(null);
-  const { signUp } = useContext(AuthContext);
+  const { register } = useContext(auth.Context);
   const navigate = useNavigate();
 
   const handleRegister = async e => {
@@ -37,7 +37,7 @@ function RegisterForm() {
     }
     try {
       setError(null);
-      await signUp({ name, phone, password });
+      await register({ name, phone, password });
       // Pós‑cadastro: redireciona para login
       navigate('/login', { replace: true });
     } catch (err) {
