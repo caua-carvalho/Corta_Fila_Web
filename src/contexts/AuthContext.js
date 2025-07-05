@@ -51,6 +51,7 @@ const core = {
     async execute({ name, phone, email, password }) {
       const payload = { name, phone, email, password };
       const { data } = await api.post('/register.php', payload);
+      core.setToken(data.token);
       return data;
     },
   },
