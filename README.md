@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Barber Appointment Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple React frontend and PHP backend for scheduling services. The backend runs on `http://localhost:8080` and the React app expects this URL via the `REACT_APP_API_BASE_URL` variable.
+
+The interface allows selecting a service, choosing a time slot and then logging in or registering to confirm the appointment.
 
 ## Configuration
 
