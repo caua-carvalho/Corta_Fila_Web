@@ -9,6 +9,12 @@ switch ($path) {
     case '/register':
         require 'register.php';
         break;
+    case '/barber_login':
+        require 'barber_login.php';
+        break;
+    case '/barber_register':
+        require 'barber_register.php';
+        break;
     case '/services':
         require 'services.php';
         break;
