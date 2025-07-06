@@ -37,14 +37,15 @@ export default function Register() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>AGENDA</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <FloatingInput
-          label="Nome"
-          name="nome"
-          value={form.nome}
-          onChange={handleChange}
-        />
+      <div style={styles.card}>
+        <h1 style={styles.title}>AGENDA</h1>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <FloatingInput
+            label="Nome"
+            name="nome"
+            value={form.nome}
+            onChange={handleChange}
+          />
         <FloatingInput
           label="Telefone"
           name="telefone"
@@ -69,16 +70,17 @@ export default function Register() {
 
         {erro && <span style={styles.error}>{erro}</span>}
 
-        <button type="submit" style={styles.button}>
-          CADASTRAR
-        </button>
-      </form>
-      <p style={styles.footerLink}>
-        Já tem uma conta?{' '}
-        <a href="/login" style={styles.linkAnchor}>
-          Entrar
-        </a>
-      </p>
+          <button type="submit" style={styles.button}>
+            CADASTRAR
+          </button>
+        </form>
+        <p style={styles.footerLink}>
+          Já tem uma conta?{' '}
+          <a href="/login" style={styles.linkAnchor}>
+            Entrar
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
@@ -88,10 +90,20 @@ const styles = {
     backgroundColor: '#171717',
     minHeight: '100vh',
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '0 16px',
+    padding: '16px',
+  },
+  card: {
+    width: '100%',
+    maxWidth: '400px',
+    backgroundColor: '#1f1f1f',
+    padding: '32px',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   title: {
     color: '#C38A42',
@@ -102,10 +114,9 @@ const styles = {
   },
   form: {
     width: '100%',
-    maxWidth: '360px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: '12px',
   },
   button: {
     marginTop: '16px',
@@ -117,6 +128,7 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
     cursor: 'pointer',
+    transition: 'background-color 0.2s ease',
   },
   error: {
     color: '#FF5252',
