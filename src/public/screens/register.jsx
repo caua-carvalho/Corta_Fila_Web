@@ -38,7 +38,7 @@ export default function Register() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>AGENDA</h1>
+        <h1 style={styles.title}>REGISTRE-SE</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
           <FloatingInput
             label="Nome"
