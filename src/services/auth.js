@@ -1,9 +1,22 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = 'http://localhost:8080/Corta_Fila_Back/public';
 
 export async function loginBarber(telefone, senha) {
   const response = await axios.post(`${API_BASE_URL}/barbeiros/login`, {
+    telefone,
+    senha,
+  });
+
+  const { token, user } = response.data;
+  localStorage.setItem('authToken', token);
+  localStorage.setItem('authUser', JSON.stringify(user));
+  return user;
+}
+
+export async function registerBarber(nome, telefone, senha) {
+  const response = await axios.post(`${API_BASE_URL}/barbeiros/register`, {
+    nome,
     telefone,
     senha,
   });

@@ -51,6 +51,12 @@ export default function Login() {
             ENTRAR
           </button>
         </form>
+        <p style={styles.footerLink}>
+          Não possui Conta?{' '}
+          <a href="/register" style={styles.linkAnchor}>
+            Registre-se
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -106,5 +112,15 @@ const styles = {
     fontSize: '14px',
     fontWeight: '500',
     marginTop: '4px',
+  },
+  footerLink: {
+    marginTop: '16px',
+    fontSize: '14px',
+    color: '#AAA',
+  },
+  linkAnchor: {
+    color: '#C38A42',
+    textDecoration: 'none',
+    fontWeight: '500',
   },
 };
