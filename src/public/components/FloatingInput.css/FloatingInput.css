@@ -1,0 +1,38 @@
+.floating-input {
+  position: relative;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.fi-input {
+  width: 100%;
+  padding: 8px 4px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #444;
+  color: #fff;
+  font-size: 16px;
+}
+
+.fi-input:focus {
+  outline: none;
+  border-bottom-color: #C38A42;
+}
+
+.fi-input:focus + .fi-label,
+.fi-input:not(:placeholder-shown) + .fi-label {
+  top: -8px;
+  font-size: 12px;
+  color: #C38A42;
+}
+
+.fi-label {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #aaa;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
