@@ -8,8 +8,7 @@ export async function loginBarber(telefone, senha) {
     senha,
   });
 
-  const { token, user } = response.data;
-  localStorage.setItem('authToken', token);
+  const user = response.data.user ?? response.data;
   localStorage.setItem('authUser', JSON.stringify(user));
   return user;
 }
@@ -21,14 +20,12 @@ export async function registerBarber(nome, telefone, senha) {
     senha,
   });
 
-  const { token, user } = response.data;
-  localStorage.setItem('authToken', token);
+  const user = response.data.user ?? response.data;
   localStorage.setItem('authUser', JSON.stringify(user));
   return user;
 }
 
 export function logout() {
-  localStorage.removeItem('authToken');
   localStorage.removeItem('authUser');
 }
 
