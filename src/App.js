@@ -1,14 +1,25 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './public/screens/register.jsx';
+import Login from './public/screens/login.jsx';
+import BarberDashboard from './private/screens/BarberDashboard.jsx';
+import BarberRoute from './private/components/BarberRoute.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/Register" replace />} />
-        <Route path="/Register" element={<Register />} />
-        {/* Add more routes here as needed */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/barber"
+          element={(
+            <BarberRoute>
+              <BarberDashboard />
+            </BarberRoute>
+          )}
+        />
       </Routes>
     </BrowserRouter>
   );
