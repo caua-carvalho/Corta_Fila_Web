@@ -29,6 +29,7 @@ export async function registerBarber(name, phone, password) {
 
 export function logout() {
   localStorage.removeItem('authUser');
+  window.location.reload(true);
 }
 
 export function getCurrentUser() {
@@ -38,5 +39,5 @@ export function getCurrentUser() {
 
 export function isBarberAuthenticated() {
   const user = getCurrentUser();
-  return !!user && user.role === 1;
+  return !!user && user.role === 0;
 }
