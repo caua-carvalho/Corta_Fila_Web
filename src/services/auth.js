@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/Corta_Fila_Back';
+// Carrega a URL base da API a partir da variável de ambiente
+const API_BASE_URL = process.env.REACT_APP_API_URL;
+
+if (!API_BASE_URL) {
+  throw new Error('A variável de ambiente VITE_API_BASE_URL não está definida. Verifique seu arquivo .env.');
+}
 
 export async function loginBarber(phone, password) {
   const response = await axios.post(`${API_BASE_URL}/barbers/login.php`, {
