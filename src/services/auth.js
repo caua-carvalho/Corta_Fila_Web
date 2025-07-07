@@ -8,7 +8,7 @@ if (!API_BASE_URL) {
 }
 
 export async function loginBarber(phone, password) {
-  const response = await axios.post(`${API_BASE_URL}/barbers/login.php`, {
+  const response = await axios.post(`${API_BASE_URL}/user/login.php`, {
     phone,
     password,
   });
@@ -19,7 +19,7 @@ export async function loginBarber(phone, password) {
 }
 
 export async function registerBarber(name, phone, password) {
-  const response = await axios.post(`${API_BASE_URL}/barbers/register.php`, {
+  const response = await axios.post(`${API_BASE_URL}/user/register.php`, {
     name,
     phone,
     password,
