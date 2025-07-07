@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/Corta_Fila_Back/public';
+const API_BASE_URL = 'http://localhost:8080/Corta_Fila_Back';
 
-export async function loginBarber(telefone, senha) {
-  const response = await axios.post(`${API_BASE_URL}/barbeiros/login`, {
-    telefone,
-    senha,
+export async function loginBarber(phone, password) {
+  const response = await axios.post(`${API_BASE_URL}/barbers/login`, {
+    phone,
+    password,
   });
 
   const user = response.data.user ?? response.data;
@@ -13,12 +13,14 @@ export async function loginBarber(telefone, senha) {
   return user;
 }
 
-export async function registerBarber(nome, telefone, senha) {
-  const response = await axios.post(`${API_BASE_URL}/barbeiros/register`, {
-    nome,
-    telefone,
-    senha,
+export async function registerBarber(name, phone, password) {
+  const response = await axios.post(`${API_BASE_URL}/barbers/register.php`, {
+    name,
+    phone,
+    password,
   });
+
+  console.log(response);
 
   const user = response.data.user ?? response.data;
   localStorage.setItem('authUser', JSON.stringify(user));

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FloatingInput from '../components/FloatingInput.css/FloatingInput.jsx'; // Certifique-se de que o caminho está correto
+import { registerBarber } from '../../services/auth.js'; // Ajuste o caminho conforme necessário
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -31,8 +32,20 @@ export default function Register() {
       return;
     }
     setErro('');
-    // chame sua API aqui
-    alert('Cadastro realizado com sucesso!');
+    
+    // Função para lidar com sucesso no cadastro
+    // Gerado pelo Copilot
+    const handleCadastroSucesso = () => {
+      // Aqui seria melhor redirecionar o usuário, por exemplo:
+      window.location.href = '/login';
+    };
+
+    registerBarber(form.nome, form.telefone, form.senha)
+      .then(handleCadastroSucesso)
+      .catch(err => {
+        console.error('Erro ao cadastrar:', err);
+        setErro('Erro ao cadastrar. Tente novamente.');
+      });
   };
 
   return (
