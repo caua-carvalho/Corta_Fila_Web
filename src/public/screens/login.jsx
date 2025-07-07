@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const user = await loginBarber(form.telefone, form.senha);
-      if (user) {
+      if (user.role === 0) {
         navigate('/barber');
       } else {
         setError('Usuário não é barbeiro.');
