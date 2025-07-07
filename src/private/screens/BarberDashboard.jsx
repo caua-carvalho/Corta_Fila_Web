@@ -6,7 +6,7 @@ export default function BarberDashboard() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Bem-vindo, {user?.nome}</h1>
+      <h1 style={styles.title}>Bem-vindo, {user?.name}</h1>
       <p style={styles.text}>Esta é uma area restrita para barbeiros.</p>
       <button style={styles.button} onClick={logout}>
         Sair

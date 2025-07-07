@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8080/Corta_Fila_Back';
 
 export async function loginBarber(phone, password) {
-  const response = await axios.post(`${API_BASE_URL}/barbers/login`, {
+  const response = await axios.post(`${API_BASE_URL}/barbers/login.php`, {
     phone,
     password,
   });
@@ -38,5 +38,5 @@ export function getCurrentUser() {
 
 export function isBarberAuthenticated() {
   const user = getCurrentUser();
-  return !!user && user.role === 'barbeiro';
+  return !!user && user.role === 1;
 }
