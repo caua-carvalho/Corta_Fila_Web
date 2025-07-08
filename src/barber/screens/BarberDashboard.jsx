@@ -1,5 +1,9 @@
 import React from 'react';
-import { logout, getCurrentUser } from '../../services/auth.js';
+import { logout, getCurrentUser, infoBarber } from '../../services/auth.js';
+
+if (infoBarber() === null) {
+  window.location.href = '/barber/register';
+}
 
 export default function BarberDashboard() {
   const user = getCurrentUser();

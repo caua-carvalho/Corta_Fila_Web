@@ -11,7 +11,7 @@ export async function registerBarberShop(name, bio, photo, email) {
     user_id: JSON.parse(localStorage.getItem('authUser')).user_id,
   });
 
-  const user = response.data.user ?? response.data;
-  localStorage.setItem('authBarber', JSON.stringify(user));
+  const user = response.user ?? response.data;
+  console.log(user);
   return user;
 }

@@ -54,6 +54,7 @@ function BarberForm({ userId }) {
             const result = await submitBarberData(formData);
             if (result.success) {
                 alert('Barbeiro cadastrado!');
+                localStorage.setItem('authBarber', JSON.stringify(result.user));
             } else {
                 console.log(result);
                 alert('Erro: ' + result.message);
