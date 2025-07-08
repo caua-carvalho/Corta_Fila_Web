@@ -1,10 +1,13 @@
+// Gerado pelo Copilot
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './public/screens/register.jsx';
 import Login from './public/screens/login.jsx';
-import BarberDashboard from './private/screens/BarberDashboard.jsx';
-import BarberRoute from './private/components/BarberRoute.jsx';
+import BarberDashboard from './barber/screens/BarberDashboard.jsx';
+import BarberRoute from './barber/components/BarberRoute.jsx';
+import BarberRegister from './barber/screens/BarberRegister.jsx';
 
+// Função principal que define as rotas da aplicação
 function App() {
   return (
     <BrowserRouter>
@@ -12,11 +15,20 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        {/* Rotas protegidas do barbeiro */}
         <Route
           path="/barber"
           element={(
             <BarberRoute>
               <BarberDashboard />
+            </BarberRoute>
+          )}
+        />
+        <Route
+          path="/barber/register"
+          element={(
+            <BarberRoute>
+              <BarberRegister />
             </BarberRoute>
           )}
         />
