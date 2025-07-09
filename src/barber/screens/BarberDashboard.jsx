@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { logout, getCurrentUser, infoBarber } from '../../services/auth.js';
 
 if (infoBarber() === null) {
@@ -7,6 +7,17 @@ if (infoBarber() === null) {
 
 export default function BarberDashboard() {
   const user = getCurrentUser();
+
+  useEffect(() => {
+    async function checkInfo() {
+      const info = await infoBarber();
+      if (info === null) {
+        window.location.href = '/barber/register';
+      }
+    }
+
+    checkInfo();
+  }, []);
 
   return (
     <div style={styles.container}>
