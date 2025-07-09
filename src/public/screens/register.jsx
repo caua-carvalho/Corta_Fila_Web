@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FloatingInput from '../components/FloatingInput.css/FloatingInput.jsx'; // Certifique-se de que o caminho está correto
 import { registerBarber } from '../../services/auth.js'; // Ajuste o caminho conforme necessário
+import '../../styles/screens.css';
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -49,10 +50,10 @@ export default function Register() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>REGISTRE-SE</h1>
-        <form onSubmit={handleSubmit} style={styles.form}>
+    <div className="screen-container">
+      <div className="screen-card">
+        <h1 className="screen-title">REGISTRE-SE</h1>
+        <form onSubmit={handleSubmit} className="screen-form">
           <FloatingInput
             label="Nome"
             name="nome"
@@ -81,15 +82,15 @@ export default function Register() {
           onChange={handleChange}
         />
 
-        {erro && <span style={styles.error}>{erro}</span>}
+        {erro && <span className="screen-error">{erro}</span>}
 
-          <button type="submit" style={styles.button}>
+          <button type="submit" className="screen-button">
             CADASTRAR
           </button>
         </form>
-        <p style={styles.footerLink}>
+        <p className="screen-footer-link">
           Já tem uma conta?{' '}
-          <a href="/login" style={styles.linkAnchor}>
+          <a href="/login" className="screen-link-anchor">
             Entrar
           </a>
         </p>
@@ -98,65 +99,3 @@ export default function Register() {
   );
 }
 
-const styles = {
-  container: {
-    backgroundColor: '#171717',
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '16px',
-  },
-  card: {
-    width: '100%',
-    maxWidth: '400px',
-    backgroundColor: '#1f1f1f',
-    padding: '32px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  title: {
-    color: '#C38A42',
-    fontSize: '32px',
-    fontWeight: 'bold',
-    letterSpacing: '2px',
-    marginBottom: '24px',
-  },
-  form: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-  },
-  button: {
-    marginTop: '16px',
-    padding: '12px',
-    backgroundColor: '#C38A42',
-    color: '#171717',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    transition: 'background-color 0.2s ease',
-  },
-  error: {
-    color: '#FF5252',
-    fontSize: '14px',
-    fontWeight: '500',
-    marginTop: '4px',
-  },
-  footerLink: {
-    marginTop: '16px',
-    fontSize: '14px',
-    color: '#AAA',
-  },
-  linkAnchor: {
-    color: '#C38A42',
-    textDecoration: 'none',
-    fontWeight: '500',
-  },
-};
