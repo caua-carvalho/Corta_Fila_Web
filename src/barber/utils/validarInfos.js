@@ -8,7 +8,7 @@ export async function registerBarberShop(name, bio, photo, email) {
     bio,
     photo,
     email,
-    user_id: JSON.parse(localStorage.getItem('authUser')).user_id,
+    user_id: JSON.parse(sessionStorage.getItem('authUser')).user_id,
   });
 
   const user = response.user ?? response.data;

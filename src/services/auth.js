@@ -14,11 +14,13 @@ if (!API_BASE_URL) {
  * @returns {Promise<Object>} Dados do barbeiro registrado.
  */
 export async function infoBarber() {
-  const user = JSON.parse(localStorage.getItem('authBarber'));
+  const user = JSON.parse(sessionStorage.getItem('authBarber'));
   if (!user) return null;
 
+  const token = sessionStorage.getItem('authToken');
   const response = await axios.get(`${API_BASE_URL}/barbers/info.php`, {
     params: { user_id: user.user_id },
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
 
   return response.data;
@@ -30,9 +32,13 @@ export async function loginBarber(phone, password) {
     password,
   });
 
-  const user = response.data.user ?? response.data;
-  localStorage.setItem('authUser', JSON.stringify(user));
-  return user;
+  const { token, user } = response.data;
+  if (token) {
+    sessionStorage.setItem('authToken', token);
+  }
+  const userInfo = user ?? response.data.user ?? response.data;
+  sessionStorage.setItem('authUser', JSON.stringify(userInfo));
+  return userInfo;
 }
 
 export async function registerBarber(name, phone, password) {
@@ -44,18 +50,23 @@ export async function registerBarber(name, phone, password) {
 
   console.log(response);
 
-  const user = response.data.user ?? response.data;
-  localStorage.setItem('authUser', JSON.stringify(user));
-  return user;
+  const { token, user } = response.data;
+  if (token) {
+    sessionStorage.setItem('authToken', token);
+  }
+  const userInfo = user ?? response.data.user ?? response.data;
+  sessionStorage.setItem('authUser', JSON.stringify(userInfo));
+  return userInfo;
 }
 
 export function logout() {
-  localStorage.removeItem('authUser');
+  sessionStorage.removeItem('authUser');
+  sessionStorage.removeItem('authToken');
   window.location.reload(true);
 }
 
 export function getCurrentUser() {
-  const user = localStorage.getItem('authUser');
+  const user = sessionStorage.getItem('authUser');
   return user ? JSON.parse(user) : null;
 }
 

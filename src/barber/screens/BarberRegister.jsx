@@ -59,7 +59,7 @@ function BarberRegister() {
     try {
       const result = await submitBarberData(formData);
       if (result.success) {
-        localStorage.setItem('authBarber', JSON.stringify(result.user));
+        sessionStorage.setItem('authBarber', JSON.stringify(result.user));
         window.location.href = '/barber';
       } else {
         setError(result.message || 'Erro ao cadastrar');
