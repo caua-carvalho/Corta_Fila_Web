@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Carrega a URL base da API a partir da variável de ambiente
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 if (!API_BASE_URL) {
   throw new Error('A variável de ambiente VITE_API_BASE_URL não está definida. Verifique seu arquivo .env.');
@@ -27,10 +27,11 @@ export async function infoBarber() {
 }
 
 export async function loginBarber(phone, password) {
-  const response = await axios.post(`${API_BASE_URL}/user/login.php`, {
-    phone,
-    password,
-  });
+  const response = await axios.post(
+    `${REACT_APP_API_URL}/user/login.php`,
+    { phone, password },
+    { withCredentials: true } // 🔑 envia e recebe cookies
+  );
 
   const { token, user } = response.data;
   if (token) {
@@ -41,12 +42,13 @@ export async function loginBarber(phone, password) {
   return userInfo;
 }
 
+
 export async function registerBarber(name, phone, password) {
-  const response = await axios.post(`${API_BASE_URL}/user/register.php`, {
-    name,
-    phone,
-    password,
-  });
+  const response = await axios.post(
+    `${REACT_APP_API_URL}/user/register.php`,
+    { name, phone, password },
+    { withCredentials: true }
+  );
 
   console.log(response);
 
