@@ -5,7 +5,7 @@ import Register from './public/screens/register.jsx';
 import Login from './public/screens/login.jsx';
 import BarberDashboard from './barber/screens/BarberDashboard.jsx';
 import BarberRoute from './barber/components/BarberRoute.jsx';
-import BarberRegister from './barber/screens/BarberRegister.jsx';
+import BarberRegister from './barber/screens/InfosBarber.jsx';
 
 // Função principal que define as rotas da aplicação
 function App() {
@@ -25,7 +25,7 @@ function App() {
           )}
         />
         <Route
-          path="/barber/register"
+          path="/barber/infos"
           element={(
             <BarberRoute>
               <BarberRegister />
