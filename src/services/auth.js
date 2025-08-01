@@ -6,6 +6,7 @@ const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 if (!REACT_APP_API_URL) {
   throw new Error('A variável de ambiente REACT_APP_VIT_BASE_URL não está definida. Verifique seu arquivo .env.');
 }
+
 /** * Registra um barbeiro na API.
  * @param {string} name - Nome do barbeiro.
  * @param {string} bio - Biografia do barbeiro.
