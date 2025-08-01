@@ -7,26 +7,6 @@ if (!REACT_APP_API_URL) {
   throw new Error('A variável de ambiente REACT_APP_VIT_BASE_URL não está definida. Verifique seu arquivo .env.');
 }
 
-/** * Registra um barbeiro na API.
- * @param {string} name - Nome do barbeiro.
- * @param {string} bio - Biografia do barbeiro.
- * @param {File} photo - Foto do barbeiro.
- * @param {string} email - Email do barbeiro.
- * @returns {Promise<Object>} Dados do barbeiro registrado.
- */
-export async function infoBarber() {
-  const user = JSON.parse(sessionStorage.getItem('authBarber'));
-  if (!user) return null;
-
-  const token = sessionStorage.getItem('authToken');
-  const response = await axios.get(`${REACT_APP_API_URL}/barbers/info.php`, {
-    params: { user_id: user.user_id },
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
-  });
-
-  return response.data;
-}
-
 export async function loginBarber(phone, password) {
   const response = await axios.post(
     `${REACT_APP_API_URL}/user/login.php`,
